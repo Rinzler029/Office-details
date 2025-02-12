@@ -1,8 +1,13 @@
-import Toggle from "../assets/Activate.png";
 import AllList from "./AllLists";
 import { useState } from "react";
 
-export default function OfficesList({ blocks, dataList, deleteList, updater, setActive, setDelId }) {
+export default function OfficesList({
+  blocks,
+  dataList,
+  deleteList,
+  updater,
+  setActive,
+}) {
   const [selected, setSelected] = useState(null);
 
   return (
@@ -23,7 +28,6 @@ export default function OfficesList({ blocks, dataList, deleteList, updater, set
               setSelected={setSelected}
               selected={selected}
               setActive={setActive}
-              // setDelId={setDelId}
             />
           );
         })}

@@ -1,5 +1,16 @@
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+// import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
+import Select from "react-select";
+
+const options = [
+  { value: "Gujarat", label: "Gujarat" },
+  { value: "Karnataka", label: "Karnataka" },
+  { value: "Maharashtra", label: "Maharashtra" },
+  { value: "Punjab", label: "Punjab" },
+  { value: "Uttar Pradesh", label: "Uttar Pradesh" },
+  { value: "Telengana", label: "Telengana" },
+  { value: "West Bengal", label: "West Bengal" },
+];
 
 export default function OfficesDetails({
   blocks,
@@ -42,6 +53,14 @@ export default function OfficesDetails({
         ...extendOffice,
         [name]: value,
     }))
+    setActive(dataSend !== officeName? true : false);
+  }
+
+  function handleSelectChange(selectedOption) {
+    setOfficeName((prevDetails) => ({
+      ...prevDetails,
+      offState: selectedOption.value,
+    }));
     setActive(dataSend !== officeName? true : false);
   }
 
@@ -125,8 +144,8 @@ export default function OfficesDetails({
               <p className="text-[#666666]">
                 State <span className="text-red-500">*</span>
               </p>
-              <div className="flex items-center mt-3 border-2 border-[#DFDEDE] rounded">
-                <select
+              <div className="flex items-center mt-3">
+                {/* <select
                   name="offState"
                   id="state"
                   className="p-2 pr-3 w-full border-r-2 border-[#DFDEDE]"
@@ -141,10 +160,26 @@ export default function OfficesDetails({
                   <option value="Uttar Pradesh">Uttar pradesh</option>
                   <option value="Telengana">Telengana</option>
                   <option value="West Bengal">West Bengal</option>
-                </select>
-                <button className="items-center p-2 cursor-pointer">
+                </select> */}
+                <Select
+                  name="offState"
+                  id="state"
+                  className="w-full z-0 border-1 border-[#DFDEDE] rounded"
+                  defaultValue={officeName.offState}
+                  // value={officeName.offState}
+                  // onChange={onChangeDetails}
+                  // options={options}
+
+                  value={options.find(
+                    (option) => option.value === officeName.offState
+                  )}
+                  onChange={handleSelectChange} // Use the new function
+                  options={options}
+                  required
+                />
+                {/* <button className="items-center p-2 cursor-pointer">
                   <ChevronDownIcon className="size-5" />
-                </button>
+                </button> */}
               </div>
             </div>
             <div className="mt-5 md:w-1/2 md:mt-0">

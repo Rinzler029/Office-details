@@ -3,13 +3,13 @@ import {
   MagnifyingGlassIcon,
   PlusIcon,
 } from "@heroicons/react/24/outline";
-import Toggle from "../assets/Activate.png";
+
 
 export default function OfficesListHeader({ blocks, newDetails, dataList }) {
   return (
     <div
       className={`${
-        blocks == false ? "hidden" : "w-full"
+        blocks == false ? "hidden" : "w-full z-1"
       } sm:w-2/5 sm:block md:w-1/4 border-r-2 border-[#EFEEED] bg-[#F9F9F9] font-[font-family: Poppins, serif] sticky`}
     >
       <div className="m-5 mt-7">

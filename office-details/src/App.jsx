@@ -1,11 +1,8 @@
-import Offices from "./offices/Offices"
+import OfficesIndex from "./Offices/officesIndex"
 
 function App() {
-
   return (
-    <>
-      <Offices />
-    </>
+    <OfficesIndex />
   )
 }
 

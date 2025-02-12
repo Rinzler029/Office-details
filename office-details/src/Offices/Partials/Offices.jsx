@@ -50,8 +50,6 @@ export default function Offices() {
       setBlocks(false);
     } else {
       setDataList((pre) => {
-        console.log("kkkkkkkk______________", pre);
-
         return [...pre, { id: crypto.randomUUID(), ...officeName }];
       });
     }
@@ -95,6 +93,8 @@ export default function Offices() {
     setDetailSelect(false);
   }
 
+  console.log(dataList);
+
   return (
     <div>
       <AddModel
@@ -103,7 +103,7 @@ export default function Offices() {
         onSubmit={addDetailList}
       />
       <div>
-        <div className="flex fixed w-full">
+        <div className="flex fixed w-full z-10">
           <OfficesListHeader
             blocks={blocks}
             newDetails={detailsAdder}

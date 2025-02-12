@@ -1,5 +1,16 @@
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+// import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import Select from "react-select";
+
+const options = [
+  { value: "Gujarat", label: "Gujarat" },
+  { value: "Karnataka", label: "Karnataka" },
+  { value: "Maharashtra", label: "Maharashtra" },
+  { value: "Punjab", label: "Punjab" },
+  { value: "Uttar Pradesh", label: "Uttar Pradesh" },
+  { value: "Telengana", label: "Telengana" },
+  { value: "West Bengal", label: "West Bengal" },
+];
 
 export default function AddModel({ dispModal, closeModal, onSubmit }) {
   const [officeName, setOfficeName] = useState({
@@ -40,19 +51,36 @@ export default function AddModel({ dispModal, closeModal, onSubmit }) {
 
   // console.log(dataSend)
 
-  function onChangeDetails(event){
-    const {name, value} = event.target;
-    setOfficeName((addDetails) => ({
-        ...addDetails,
-        [name]: value,
-    }))
+  // function onChangeDetails(event) {
+  //   const { name, value } = event.target;
+  //   setOfficeName((addDetails) => ({
+  //     ...addDetails,
+  //     [name]: value,
+  //   }));
+  // }
+
+  function onChangeDetails(event) {
+    // if (event && event.target) {
+    const { name, value } = event.target;
+    setOfficeName((prevDetails) => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+    // }
+  }
+
+  function handleSelectChange(selectedOption) {
+    setOfficeName((prevDetails) => ({
+      ...prevDetails,
+      offState: selectedOption.value, // Update the state correctly
+    }));
   }
 
   return (
     <div
       className={`${
         dispModal == true ? "block" : "hidden"
-      } z-1 absolute w-full h-screen p-8 overflow-auto`}
+      } z-20 absolute w-full h-screen p-8 overflow-auto`}
       style={{ backgroundColor: "rgba(0,0,0,0.8" }}
     >
       <div className="z-1 bg-white h-screen rounded-lg">
@@ -136,26 +164,39 @@ export default function AddModel({ dispModal, closeModal, onSubmit }) {
                     <p className="text-[#666666]">
                       State <span className="text-red-500">*</span>
                     </p>
-                    <div className="flex items-center mt-3 border-2 border-[#DFDEDE] rounded">
-                      <select
+                    <div className="flex items-center mt-3">
+                      {/* <Select
                         name="offState"
                         id="state"
-                        className="p-2 pr-3 w-full border-r-2 border-[#DFDEDE]"
+                        className="w-full border-r-2 border-[#DFDEDE]"
                         value={officeName.offState}
                         onChange={onChangeDetails}
+                        options={options}
                         required
-                      >
-                        <option value="Gujarat">Gujarat</option>
+                      /> */}
+                      <Select
+                        name="offState"
+                        id="state"
+                        className="w-full border-1 border-[#DFDEDE] rounded"
+                        // defaultValue={officeName.offState}
+                        value={options.find(
+                          (option) => option.value === officeName.offState
+                        )}
+                        onChange={handleSelectChange} // Use the new function
+                        options={options}
+                        required
+                      />
+                      {/* <option value="Gujarat">Gujarat</option>
                         <option value="Karnataka">Karnataka</option>
                         <option value="Maharashtra">Maharashtra</option>
                         <option value="Punjab">Punjab</option>
                         <option value="Uttar Pradesh">Uttar pradesh</option>
                         <option value="Telengana">Telengana</option>
-                        <option value="West Bengal">West Bengal</option>
-                      </select>
-                      <button className="items-center p-2 cursor-pointer">
+                        <option value="West Bengal">West Bengal</option> */}
+                      {/* </select> */}
+                      {/* <button className="items-center p-2 cursor-pointer">
                         <ChevronDownIcon className="size-5" />
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   <div className="mt-5 md:w-1/2 md:mt-0">
