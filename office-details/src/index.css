@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+select {
+  /* for Firefox */
+  -moz-appearance: none;
+  /* for Safari, Chrome, Opera */
+  -webkit-appearance: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
